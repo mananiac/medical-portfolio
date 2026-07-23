@@ -103,6 +103,25 @@ const physicianSchema = {
 
     <!-- Physician / Person Medical Schema (JSON-LD) -->
     <script type="application/ld+json" is:inline set:html={JSON.stringify(physicianSchema)} />
+
+    <!-- Netlify Identity Widget & Token Redirection Listener -->
+    <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script is:inline>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", (user) => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+      
+      // Automatically redirect to /admin if an invite or recovery token is detected in the URL hash
+      if (window.location.hash.includes("_token=")) {
+        window.location.href = "/admin/" + window.location.hash;
+      }
+    </script>
   </head>
   <body class="min-h-full flex flex-col font-sans text-slate-800 antialiased selection:bg-medical-100 selection:text-medical-800">
     
