@@ -1,0 +1,121 @@
+---
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import SEO from '@components/SEO.astro';
+import '@styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  activeNav?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  articleDate?: Date | string;
+}
+
+const {
+  title = 'Dr. Drishti Sagar, MD | Clinical Microbiologist & Infection Prevention Specialist',
+  description = 'Official portfolio, clinical microbiology research, infection control expertise, and medical publications by Dr. Drishti Sagar, MD.',
+  activeNav = 'home',
+  image = '/doctor_headshot.png',
+  type = 'website',
+  articleDate,
+} = Astro.props;
+
+// Global Physician / Person Medical Schema Markup (JSON-LD)
+const physicianSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['Physician', 'Person'],
+  'name': 'Dr. Drishti Sagar, MD',
+  'givenName': 'Drishti',
+  'familyName': 'Sagar',
+  'honorificPrefix': 'Dr.',
+  'honorificSuffix': 'MD',
+  'jobTitle': 'Clinical Microbiologist & Infection Prevention Specialist',
+  'medicalSpecialty': 'Clinical Microbiology',
+  'description': 'Clinical Microbiologist, Gold Medalist (MUHS MD Rank 1), Infection Prevention & Control Specialist, and Public Health Enthusiast.',
+  'url': 'https://dralexvance.com',
+  'image': 'https://dralexvance.com/doctor_headshot.png',
+  'email': 'drishsag14@gmail.com',
+  'address': {
+    '@type': 'PostalAddress',
+    'addressLocality': 'New Delhi',
+    'addressRegion': 'Delhi',
+    'addressCountry': 'India',
+  },
+  'worksFor': [
+    {
+      '@type': 'MedicalOrganization',
+      'name': 'Delhi Government',
+    },
+    {
+      '@type': 'MedicalOrganization',
+      'name': 'Aakash Healthcare Super Speciality Hospital',
+    },
+    {
+      '@type': 'MedicalOrganization',
+      'name': 'GS Medical College & KEM Hospital, Mumbai',
+    },
+  ],
+  'alumniOf': [
+    {
+      '@type': 'EducationalOrganization',
+      'name': 'Maharashtra University of Health Sciences (MUHS)',
+    },
+    {
+      '@type': 'EducationalOrganization',
+      'name': 'Indian Institutes of Public Health (IIPH)',
+    },
+    {
+      '@type': 'EducationalOrganization',
+      'name': 'Teerthanker Mahaveer University',
+    },
+  ],
+  'sameAs': [
+    'https://www.linkedin.com/in/dr-drishti-sagar',
+  ],
+};
+---
+
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO & Open Graph Meta Component -->
+    <SEO
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+      articleDate={articleDate}
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Physician / Person Medical Schema (JSON-LD) -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(physicianSchema)} />
+  </head>
+  <body class="min-h-full flex flex-col font-sans text-slate-800 antialiased selection:bg-medical-100 selection:text-medical-800">
+    
+    <!-- Global Header -->
+    <Header activeNav={activeNav} />
+
+    <!-- Main Content Container -->
+    <main id="main-content" class="flex-grow">
+      <slot />
+    </main>
+
+    <!-- Global Footer -->
+    <Footer />
+
+  </body>
+</html>

@@ -1,0 +1,161 @@
+---
+import Layout from '@layouts/Layout.astro';
+
+const bios = {
+  short: `Dr. Drishti Sagar, MD, is a Clinical Microbiologist, MUHS MD Examination Gold Medalist (Rank 1), Infection Control Specialist, and Public Health enthusiast based in New Delhi, India.`,
+  medium: `Dr. Drishti Sagar, MD, is a board-certified Clinical Microbiologist and Infection Control Officer. A Gold Medalist (Rank 1) in the MUHS MD examination and ICMR MD Thesis Grantee, Dr. Sagar serves as Senior Resident with the Delhi Government and active peer reviewer for the Indian Journal of Medical Microbiology (IJMMTD) and IJMR. Her expertise spans hospital infection control, NABL ISO 15189 audits, and outbreak surveillance.`,
+  long: `Dr. Drishti Sagar, MD, is an eminent Clinical Microbiologist, Gold Medalist (MUHS MD Examination Rank 1), Infection Prevention & Control Specialist, and Public Health Professional. She earned her Doctor of Medicine (MD) in Clinical Microbiology & Infectious Diseases from Maharashtra University of Health Sciences (MUHS) with the ICMR MD Thesis Grant, and completed her MBBS at Teerthanker Mahaveer University. 
+
+Dr. Sagar holds a Post Graduate Certificate in Health Economics, Healthcare Financing, and Policy from the Indian Institutes of Public Health (IIPHs). Her career includes Senior Residency positions at Delhi Government, GS Medical College & KEM Hospital (Mumbai), B J Government Medical College (Pune), and serving as Infection Control Officer at Aakash Healthcare. She has published over 15 papers in indexed medical journals and regularly reviews manuscript submissions for IJMMTD and IJMR.`,
+};
+---
+
+<Layout title="Media & Press Kit | Dr. Drishti Sagar, MD" activeNav="media kit">
+  <!-- Page Header -->
+  <section class="py-12 bg-slate-100/70 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-xs font-bold text-medical-700 uppercase tracking-widest bg-medical-50 px-3 py-1 rounded-full border border-medical-200">
+        Press Assets & Biographies
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Media & Journalist Press Kit</h1>
+      <p class="text-slate-600 text-sm mt-1 max-w-3xl">
+        Official high-resolution photography, standardized professional biographies, and media guidelines for conference organizers and medical journals.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    
+    <!-- Press Photos Section -->
+    <section class="space-y-6">
+      <div class="border-b border-slate-200 pb-4">
+        <h2 class="text-2xl font-bold text-slate-900">High-Resolution Official Photography</h2>
+        <p class="text-xs text-slate-500 mt-0.5">Approved for publication, medical journals, and conference program use. Credit: <em>Photo courtesy of Dr. Drishti Sagar Media Office</em>.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Press Photo 1: Headshot -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <div class="relative rounded-xl overflow-hidden aspect-4/3 bg-slate-100">
+            <img
+              src="/doctor_headshot.png"
+              alt="Dr. Drishti Sagar official portrait press photo"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900 text-base">Official Studio Portrait</h3>
+              <p class="text-xs text-slate-500">Color • High-Resolution PNG</p>
+            </div>
+            <a
+              href="/doctor_headshot.png"
+              download="Dr_Drishti_Sagar_Headshot_HighRes.png"
+              class="px-4 py-2 bg-primary-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold shadow-2xs transition-all inline-flex items-center gap-1.5"
+            >
+              Download PNG
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Standardized Professional Biographies -->
+    <section class="space-y-8">
+      <div class="border-b border-slate-200 pb-4">
+        <h2 class="text-2xl font-bold text-slate-900">Standardized Biographies</h2>
+        <p class="text-xs text-slate-500 mt-0.5">Click any bio card to quickly copy text to your clipboard for conference booklets or web features.</p>
+      </div>
+
+      <div class="space-y-6">
+        
+        <!-- Short Bio -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-medical-700 bg-medical-50 px-2.5 py-1 rounded-md border border-medical-200">
+              Short-Form Bio (~40 Words)
+            </span>
+            <button
+              type="button"
+              class="copy-btn px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition-colors inline-flex items-center gap-1.5"
+              data-bio={bios.short}
+            >
+              Copy Short Bio
+            </button>
+          </div>
+          <p class="text-sm text-slate-700 leading-relaxed font-sans bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+            {bios.short}
+          </p>
+        </div>
+
+        <!-- Medium Bio -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-primary-800 bg-primary-50 px-2.5 py-1 rounded-md border border-primary-200">
+              Medium-Form Bio (~100 Words)
+            </span>
+            <button
+              type="button"
+              class="copy-btn px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition-colors inline-flex items-center gap-1.5"
+              data-bio={bios.medium}
+            >
+              Copy Medium Bio
+            </button>
+          </div>
+          <p class="text-sm text-slate-700 leading-relaxed font-sans bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+            {bios.medium}
+          </p>
+        </div>
+
+        <!-- Long Bio -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-800 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-200">
+              Long-Form Bio (Comprehensive)
+            </span>
+            <button
+              type="button"
+              class="copy-btn px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition-colors inline-flex items-center gap-1.5"
+              data-bio={bios.long}
+            >
+              Copy Long Bio
+            </button>
+          </div>
+          <div class="text-sm text-slate-700 leading-relaxed font-sans bg-slate-50 p-4 rounded-xl border border-slate-200/80 whitespace-pre-line">
+            {bios.long}
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const copyButtons = document.querySelectorAll('.copy-btn');
+      copyButtons.forEach((button) => {
+        button.addEventListener('click', async () => {
+          const textToCopy = button.getAttribute('data-bio');
+          if (!textToCopy) return;
+
+          try {
+            await navigator.clipboard.writeText(textToCopy);
+            const originalHTML = button.innerHTML;
+            button.innerHTML = `<span class="text-emerald-700 font-bold">Copied!</span>`;
+            button.classList.add('bg-emerald-50');
+
+            setTimeout(() => {
+              button.innerHTML = originalHTML;
+              button.classList.remove('bg-emerald-50');
+            }, 2500);
+          } catch (err) {
+            console.error('Failed to copy biography text: ', err);
+          }
+        });
+      });
+    });
+  </script>
+</Layout>

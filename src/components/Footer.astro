@@ -1,0 +1,65 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-slate-900 text-slate-300 border-t border-slate-800 mt-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+      
+      <!-- Medical Credentials & Bio -->
+      <div class="md:col-span-2 space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-medical-600 flex items-center justify-center text-white font-bold text-sm">
+            MD
+          </div>
+          <span class="font-heading font-bold text-xl text-white">Dr. Drishti Sagar, MD</span>
+        </div>
+        <p class="text-sm text-slate-400 leading-relaxed max-w-md">
+          Clinical Microbiologist, MUHS MD Examination Gold Medalist (Rank 1), Infection Prevention and Control Specialist, and Public Health Professional.
+        </p>
+        <div class="flex flex-wrap gap-2 pt-2">
+          <span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-slate-800 text-amber-300 border border-amber-700/60">
+            🥇 MUHS MD Gold Medalist (Rank 1)
+          </span>
+          <span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-slate-800 text-emerald-300 border border-emerald-700/60">
+            🔬 ICMR MD Thesis Grantee
+          </span>
+        </div>
+      </div>
+
+      <!-- Quick Navigation -->
+      <div>
+        <h3 class="font-heading text-sm font-semibold uppercase tracking-wider text-slate-100 mb-4">
+          Quick Links
+        </h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/about" class="hover:text-medical-400 transition-colors">About & Bio</a></li>
+          <li><a href="/achievements" class="hover:text-medical-400 transition-colors">Awards & Honors</a></li>
+          <li><a href="/articles" class="hover:text-medical-400 transition-colors">Indexed Publications</a></li>
+          <li><a href="/media-kit" class="hover:text-medical-400 transition-colors">Press & Media Kit</a></li>
+        </ul>
+      </div>
+
+      <!-- Medical Disclaimer -->
+      <div>
+        <h3 class="font-heading text-sm font-semibold uppercase tracking-wider text-slate-100 mb-4">
+          Medical Disclaimer
+        </h3>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          The information contained on this portal is for professional educational purposes and academic reference. It does not establish a formal patient-physician relationship.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-slate-800 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+      <p>© {currentYear} Dr. Drishti Sagar, MD. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="https://www.linkedin.com/in/dr-drishti-sagar" target="_blank" class="hover:text-slate-400 transition-colors">LinkedIn Profile</a>
+        <a href="/contact" class="hover:text-slate-400 transition-colors">Contact Office</a>
+        <a href="#" class="hover:text-slate-400 transition-colors">Privacy Notice</a>
+      </div>
+    </div>
+  </div>
+</footer>

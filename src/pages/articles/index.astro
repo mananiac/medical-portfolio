@@ -1,0 +1,186 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+import Newsletter from '@components/Newsletter.astro';
+
+// Fetch all articles and filter out drafts in production
+const allArticles = await getCollection('articles', ({ data }) => {
+  return import.meta.env.PROD ? !data.draft : true;
+});
+
+// Sort articles by publication date descending (newest first)
+const articles = allArticles.sort(
+  (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+
+// Unique categories
+const categories = [...new Set(allArticles.map((a) => a.data.category))];
+
+// Category badge color mapping
+const categoryColors: Record<string, string> = {
+  Virology: 'bg-indigo-50 text-indigo-800 border-indigo-200 hover:bg-indigo-100',
+  Bacteriology: 'bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100',
+  Immunology: 'bg-purple-50 text-purple-800 border-purple-200 hover:bg-purple-100',
+  'Antimicrobial Resistance': 'bg-amber-50 text-amber-900 border-amber-200 hover:bg-amber-100',
+  'Public Health': 'bg-primary-50 text-primary-900 border-primary-200 hover:bg-primary-100',
+};
+---
+
+<Layout title="Medical Articles & Clinical Insights | Dr. Alex Vance, MD, PhD" activeNav="articles">
+  <!-- Page Header -->
+  <section class="py-12 bg-slate-100/70 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-bold text-medical-700 uppercase tracking-widest bg-medical-50 px-3 py-1 rounded-full border border-medical-200">
+              Evidence-Based Repository
+            </span>
+            <a
+              href="/rss.xml"
+              target="_blank"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200/80 px-2.5 py-0.5 rounded-full hover:bg-amber-100 transition-colors"
+            >
+              <span>📡</span> RSS Feed
+            </a>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Articles, Research & Clinical Reviews</h1>
+          <p class="text-slate-600 text-sm mt-1 max-w-2xl">
+            Peer-reviewed perspectives, epidemiological surveillance findings, and translational microbiology insights.
+          </p>
+        </div>
+
+        <!-- CMS Admin Portal CTA -->
+        <div>
+          <a
+            href="/admin/"
+            target="_blank"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs transition-all shadow-sm"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-medical-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 012.828 0L20 4.828a2 2 0 010 2.828l-8.485 8.485-3.536.707.707-3.536L16.586 2.586z" />
+            </svg>
+            Decap CMS Admin Portal
+          </a>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills Bar -->
+      <div class="flex flex-wrap items-center gap-2 pt-6 border-t border-slate-200/60 mt-6">
+        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider mr-2">Filter Category:</span>
+        <a
+          href="/articles"
+          class="px-3 py-1 rounded-full text-xs font-bold bg-slate-900 text-white shadow-2xs"
+        >
+          All Topics ({articles.length})
+        </a>
+        {categories.map((cat) => {
+          const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
+          const count = articles.filter((a) => a.data.category === cat).length;
+          const badgeStyle = categoryColors[cat] || 'bg-medical-50 text-medical-800 border-medical-200';
+          return (
+            <a
+              href={`/articles/category/${catSlug}`}
+              class:list={['px-3 py-1 rounded-full text-xs font-semibold border transition-all', badgeStyle]}
+            >
+              {cat} ({count})
+            </a>
+          );
+        })}
+      </div>
+
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+    
+    {articles.length === 0 ? (
+      <div class="text-center py-16 bg-white rounded-2xl border border-slate-200 p-8 space-y-4">
+        <p class="text-slate-500">No articles published yet.</p>
+      </div>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {articles.map((article) => {
+          const formattedDate = new Date(article.data.pubDate).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+          });
+
+          const wordCount = article.body.split(/\s+/).length;
+          const readingTime = `${Math.max(1, Math.ceil(wordCount / 200))} min read`;
+          const categorySlug = article.data.category.toLowerCase().replace(/\s+/g, '-');
+          const badgeStyle = categoryColors[article.data.category] || 'bg-medical-50 text-medical-800 border-medical-200';
+
+          return (
+            <article class="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-medical-soft hover:shadow-medical-card hover:border-medical-300 transition-all duration-200 flex flex-col justify-between">
+              
+              <!-- Card Top Image / Header -->
+              <div>
+                {article.data.heroImage && (
+                  <a href={`/articles/${article.slug}`} class="block overflow-hidden aspect-16/9 bg-slate-100">
+                    <img
+                      src={article.data.heroImage}
+                      alt={article.data.title}
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </a>
+                )}
+
+                <div class="p-6 space-y-4">
+                  <!-- Category & Date Badge -->
+                  <div class="flex items-center justify-between text-xs">
+                    <a
+                      href={`/articles/category/${categorySlug}`}
+                      class:list={['px-2.5 py-1 rounded-full font-bold border uppercase tracking-wider transition-colors', badgeStyle]}
+                    >
+                      {article.data.category}
+                    </a>
+                    <span class="text-slate-500 font-medium">
+                      {formattedDate} • {readingTime}
+                    </span>
+                  </div>
+
+                  <!-- Article Title -->
+                  <h2 class="font-heading font-bold text-xl text-slate-900 group-hover:text-medical-700 transition-colors leading-snug">
+                    <a href={`/articles/${article.slug}`}>
+                      {article.data.title}
+                    </a>
+                  </h2>
+
+                  <!-- Description -->
+                  <p class="text-sm text-slate-600 leading-relaxed line-clamp-3">
+                    {article.data.description}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card Footer CTA -->
+              <div class="p-6 pt-0 border-t border-slate-100/80 mt-4 flex items-center justify-between">
+                <span class="text-xs text-slate-500 font-medium">
+                  By {article.data.author}
+                </span>
+                <a
+                  href={`/articles/${article.slug}`}
+                  class="inline-flex items-center gap-1.5 text-xs font-bold text-medical-700 group-hover:text-medical-900 group-hover:translate-x-1 transition-all"
+                >
+                  Read Article
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
+              </div>
+
+            </article>
+          );
+        })}
+      </div>
+    )}
+
+    <!-- Newsletter Subscriber Widget -->
+    <div class="pt-8">
+      <Newsletter />
+    </div>
+
+  </div>
+</Layout>

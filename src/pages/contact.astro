@@ -1,0 +1,243 @@
+---
+import Layout from '@layouts/Layout.astro';
+
+const socialLinks = [
+  {
+    name: 'LinkedIn Professional Profile',
+    url: 'https://www.linkedin.com/in/dr-drishti-sagar',
+    icon: '👔',
+    handle: 'dr-drishti-sagar',
+  },
+  {
+    name: 'Indian Journal of Medical Microbiology (IJMMTD)',
+    url: 'https://www.ijmmtd.org',
+    icon: '🔬',
+    handle: 'Journal Reviewer',
+  },
+  {
+    name: 'Indian Journal of Medical Research (IJMR)',
+    url: 'https://www.ijmr.org.in',
+    icon: '📜',
+    handle: 'Peer Reviewer',
+  },
+];
+---
+
+<Layout title="Consultation & Contact | Dr. Drishti Sagar, MD" activeNav="contact">
+  <!-- Page Header -->
+  <section class="py-12 bg-slate-100/70 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-xs font-bold text-medical-700 uppercase tracking-widest bg-medical-50 px-3 py-1 rounded-full border border-medical-200">
+        Inquiries & Professional Contact
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Clinical Consultation & Academic Contact</h1>
+      <p class="text-slate-600 text-sm mt-1 max-w-3xl">
+        Infection control audits, clinical microbiology laboratory consultations, and public health research inquiries.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      
+      <!-- Left Column: Professional Links -->
+      <div class="lg:col-span-5 space-y-8">
+        
+        <!-- Location & Contact Info -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <h2 class="font-heading font-bold text-xl text-slate-900 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-medical-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Professional Location
+          </h2>
+          <div class="text-sm text-slate-600 space-y-1">
+            <p class="font-semibold text-slate-900">Delhi Government Senior Resident Office</p>
+            <p>New Delhi, Delhi, India</p>
+          </div>
+
+          <hr class="border-slate-100" />
+
+          <div class="space-y-2 text-xs text-slate-600">
+            <div class="flex justify-between">
+              <span class="font-medium">Direct Professional Email:</span>
+              <a href="mailto:drishsag14@gmail.com" class="font-semibold text-medical-700 hover:underline">drishsag14@gmail.com</a>
+            </div>
+            <div class="flex justify-between">
+              <span class="font-medium">Specialty Focus:</span>
+              <span class="font-semibold text-slate-900">Clinical Microbiology & HICC</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Academic Profiles -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <h2 class="font-heading font-bold text-lg text-slate-900">Official Profiles & Reviewer Links</h2>
+          
+          <div class="space-y-3">
+            {socialLinks.map((item) => (
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-medical-50/70 border border-slate-200/80 hover:border-medical-300 transition-all group"
+              >
+                <div class="flex items-center gap-3">
+                  <span class="text-xl">{item.icon}</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 text-sm group-hover:text-medical-800 transition-colors">
+                      {item.name}
+                    </div>
+                    <div class="text-xs text-slate-500">{item.handle}</div>
+                  </div>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-slate-400 group-hover:text-medical-600 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- HIPAA Notice -->
+        <div class="p-4 rounded-xl bg-amber-50 border border-amber-200/80 text-xs text-amber-900 space-y-1">
+          <div class="font-bold flex items-center gap-1.5 text-amber-950">
+            <span>🔒</span> Medical Notice:
+          </div>
+          <p class="leading-relaxed text-amber-800">
+            Do not send patient medical emergency requests through this portal. For medical emergencies, please contact your local healthcare facility immediately.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Interactive Consultation & Message Form -->
+      <div class="lg:col-span-7 space-y-8">
+        
+        <!-- Form Container -->
+        <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+          <div>
+            <h2 class="font-heading font-bold text-2xl text-slate-900">Send an Inquiry</h2>
+            <p class="text-xs text-slate-500 mt-1">
+              Please fill out the form below for academic collaborations, infection control audits, or reviewer queries.
+            </p>
+          </div>
+
+          <form id="contact-form" action="#" method="POST" class="space-y-5">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <!-- Full Name -->
+              <div class="space-y-1.5">
+                <label for="full-name" class="block text-xs font-semibold text-slate-700">
+                  Full Name <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="full-name"
+                  name="fullName"
+                  required
+                  placeholder="e.g. Dr. Rajesh Sharma"
+                  class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-slate-900 text-sm focus:ring-2 focus:ring-medical-500 focus:border-medical-500 outline-none transition-all"
+                />
+              </div>
+
+              <!-- Email Address -->
+              <div class="space-y-1.5">
+                <label for="email" class="block text-xs font-semibold text-slate-700">
+                  Email Address <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="drishsag14@gmail.com"
+                  class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-slate-900 text-sm focus:ring-2 focus:ring-medical-500 focus:border-medical-500 outline-none transition-all"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <!-- Organization -->
+              <div class="space-y-1.5">
+                <label for="organization" class="block text-xs font-semibold text-slate-700">
+                  Organization / Hospital
+                </label>
+                <input
+                  type="text"
+                  id="organization"
+                  name="organization"
+                  placeholder="Hospital, College, or Society"
+                  class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-slate-900 text-sm focus:ring-2 focus:ring-medical-500 focus:border-medical-500 outline-none transition-all"
+                />
+              </div>
+
+              <!-- Subject Category -->
+              <div class="space-y-1.5">
+                <label for="subject-type" class="block text-xs font-semibold text-slate-700">
+                  Inquiry Category <span class="text-red-500">*</span>
+                </label>
+                <select
+                  id="subject-type"
+                  name="subjectType"
+                  required
+                  class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-slate-900 text-sm focus:ring-2 focus:ring-medical-500 focus:border-medical-500 outline-none transition-all bg-white"
+                >
+                  <option value="hicc">Infection Control & HICC Audit</option>
+                  <option value="microbiology">Clinical Diagnostic Microbiology</option>
+                  <option value="review">Journal Peer Review Query</option>
+                  <option value="research">Public Health Research Collaboration</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Message Body -->
+            <div class="space-y-1.5">
+              <label for="message" class="block text-xs font-semibold text-slate-700">
+                Message & Details <span class="text-red-500">*</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+                placeholder="Please describe your inquiry or consultation request..."
+                class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-slate-900 text-sm focus:ring-2 focus:ring-medical-500 focus:border-medical-500 outline-none transition-all"
+              ></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div>
+              <button
+                type="submit"
+                class="w-full py-3.5 px-6 rounded-xl bg-primary-900 hover:bg-slate-800 text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all duration-150 flex items-center justify-center gap-2"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-medical-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+                Send Inquiry to Dr. Drishti Sagar
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const contactForm = document.getElementById('contact-form') as HTMLFormElement | null;
+      if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          alert("Thank you for your message! Dr. Drishti Sagar's office will contact you shortly.");
+          contactForm.reset();
+        });
+      }
+    });
+  </script>
+</Layout>

@@ -1,0 +1,141 @@
+---
+import Layout from '@layouts/Layout.astro';
+import AchievementCard from '@components/AchievementCard.astro';
+
+const awards = [
+  {
+    title: 'Rank 1 in MUHS MD Examination (Gold Medalist)',
+    organization: 'Maharashtra University of Health Sciences (MUHS)',
+    year: '2021',
+    category: 'Award' as const,
+    description: 'Secured First Rank across Maharashtra State in the Doctor of Medicine (MD) Clinical Microbiology examination.',
+    badge: 'Gold Medal',
+  },
+  {
+    title: 'ICMR MD Thesis Research Grant',
+    organization: 'Indian Council of Medical Research (ICMR)',
+    year: '2019 — 2021',
+    category: 'Grant' as const,
+    description: 'Competitive national research grant awarded by ICMR for postgraduate MD dissertation research in microbiology.',
+    badge: 'ICMR National Grant',
+  },
+  {
+    title: 'Corona Yodha Sammanpatra',
+    organization: 'Public Health Administration & Government Honor',
+    year: '2021',
+    category: 'Award' as const,
+    description: 'Honored for exceptional frontline medical service, COVID-19 laboratory testing, and outbreak surveillance.',
+    badge: 'Pandemic Service Honor',
+  },
+  {
+    title: 'Paper Presentation Award in Respirare 2018',
+    organization: 'Respirare National Pulmonary & Infectious Disease Conference',
+    year: '2018',
+    category: 'Speaking' as const,
+    description: 'Won paper presentation distinction for original clinical research in respiratory tract microbiology.',
+  },
+  {
+    title: 'Essay Award on "Hepatitis and Community"',
+    organization: 'Medical Public Health Association',
+    year: '2022',
+    category: 'Award' as const,
+    description: 'Awarded prize for public health essay advocating community awareness and viral hepatitis prevention.',
+  },
+  {
+    title: 'Certificate of Excellence & Honorable Mention (WHO Committee)',
+    organization: 'International Model United Nations',
+    year: '2022',
+    category: 'Award' as const,
+    description: 'Secured Certificate of Excellence and Letter of Appreciation as Top Intern in WHO health policy committee.',
+  },
+];
+
+const certifications = [
+  {
+    title: 'Internal Audit & Quality Management Systems (ISO 15189:2022 & 2012)',
+    organization: 'National Accreditation Board for Testing and Calibration Laboratories (NABL)',
+    year: '2022 — 2024',
+    category: 'Fellowship' as const,
+    description: 'Certified ISO 15189 internal auditor for medical laboratory quality assurance, calibration, and safety SOPs.',
+    badge: 'ISO 15189 Certified',
+  },
+  {
+    title: 'Pandemics: Present, Past and Future',
+    organization: 'Global Health & Infectious Disease Institute',
+    year: '2023',
+    category: 'Fellowship' as const,
+    description: 'Advanced certification covering pandemic dynamics, transmission vectors, and emergency public health response.',
+  },
+  {
+    title: 'Monkeypox Epidemiology, Preparedness and Response',
+    organization: 'Epidemic Disease Training Center',
+    year: '2023',
+    category: 'Fellowship' as const,
+    description: 'Specialized training in zoonotic poxvirus surveillance, lab diagnostic protocols, and isolation control.',
+  },
+  {
+    title: 'Infection Control for Special Pathogen Isolation',
+    organization: 'Hospital Bio-Containment Training Board',
+    year: '2023',
+    category: 'Fellowship' as const,
+    description: 'Comprehensive protocol training for high-consequence pathogen containment in intensive care environments.',
+  },
+];
+---
+
+<Layout title="Awards & Achievements Registry | Dr. Drishti Sagar, MD" activeNav="achievements">
+  <!-- Page Header -->
+  <section class="py-12 bg-slate-100/70 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-xs font-bold text-medical-700 uppercase tracking-widest bg-medical-50 px-3 py-1 rounded-full border border-medical-200">
+        Recognition & Certifications
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Honors, Awards & Quality Certifications</h1>
+      <p class="text-slate-600 text-sm mt-1 max-w-3xl">
+        MUHS Gold Medal distinction, ICMR research grants, pandemic honors, and NABL ISO 15189 quality auditor certifications.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    
+    <!-- Section 1: Distinguished Awards -->
+    <section class="space-y-6">
+      <div class="flex items-center gap-3 border-b border-slate-200 pb-4">
+        <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-lg">
+          🏆
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900">Distinguished Honors & Research Grants</h2>
+          <p class="text-xs text-slate-500">Academic gold medal, ICMR grants, and conference presentation awards</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {awards.map((item) => (
+          <AchievementCard {...item} />
+        ))}
+      </div>
+    </section>
+
+    <!-- Section 2: Quality & Special Pathogen Certifications -->
+    <section class="space-y-6">
+      <div class="flex items-center gap-3 border-b border-slate-200 pb-4">
+        <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-lg">
+          📜
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900">ISO Quality & Pandemic Preparedness Certifications</h2>
+          <p class="text-xs text-slate-500">NABL ISO 15189 lab quality audits and special pathogen isolation training</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {certifications.map((item) => (
+          <AchievementCard {...item} />
+        ))}
+      </div>
+    </section>
+
+  </div>
+</Layout>

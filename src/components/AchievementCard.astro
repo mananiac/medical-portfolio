@@ -1,0 +1,90 @@
+---
+interface Props {
+  title: string;
+  organization: string;
+  year: string | number;
+  description: string;
+  category?: 'Award' | 'Grant' | 'Speaking' | 'Fellowship' | string;
+  badge?: string;
+  link?: string;
+  linkText?: string;
+}
+
+const {
+  title,
+  organization,
+  year,
+  description,
+  category = 'Award',
+  badge,
+  link,
+  linkText = 'Learn More',
+} = Astro.props;
+
+// Category badge color mapping
+const categoryStyles: Record<string, string> = {
+  Award: 'bg-amber-50 text-amber-800 border-amber-200/80',
+  Grant: 'bg-emerald-50 text-emerald-800 border-emerald-200/80',
+  Speaking: 'bg-primary-50 text-primary-800 border-primary-200/80',
+  Fellowship: 'bg-indigo-50 text-indigo-800 border-indigo-200/80',
+};
+
+const badgeClass = categoryStyles[category] || 'bg-medical-50 text-medical-800 border-medical-200/80';
+---
+
+<article class="group relative flex flex-col justify-between p-6 bg-white rounded-2xl border border-slate-200 shadow-medical-soft hover:shadow-medical-card hover:border-medical-300 transition-all duration-200">
+  <div class="space-y-4">
+    
+    <!-- Top Metadata Header -->
+    <div class="flex items-center justify-between gap-3">
+      <span class:list={['px-3 py-1 rounded-full text-xs font-semibold border', badgeClass]}>
+        {category}
+      </span>
+      <span class="text-xs font-bold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md">
+        {year}
+      </span>
+    </div>
+
+    <!-- Title & Organization -->
+    <div>
+      <h3 class="font-heading font-bold text-xl text-slate-900 group-hover:text-medical-700 transition-colors leading-snug">
+        {title}
+      </h3>
+      <p class="text-xs font-medium text-slate-500 mt-1 flex items-center gap-1.5">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-medical-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+        {organization}
+      </p>
+    </div>
+
+    <!-- Description -->
+    <p class="text-sm text-slate-600 leading-relaxed">
+      {description}
+    </p>
+  </div>
+
+  <!-- Optional Badge / Link Footer -->
+  { (badge || link) && (
+    <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+      {badge && (
+        <span class="text-slate-500 font-medium">
+          {badge}
+        </span>
+      )}
+      {link && (
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1 font-semibold text-medical-700 hover:text-medical-900 group-hover:translate-x-0.5 transition-transform"
+        >
+          {linkText}
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
+      )}
+    </div>
+  )}
+</article>

@@ -1,0 +1,36 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true # Enables local development backend with npx decap-server
+
+media_folder: "public/assets/uploads"
+public_folder: "/assets/uploads"
+
+display_url: https://dralexvance.com
+site_url: https://dralexvance.com
+
+collections:
+  - name: "articles"
+    label: "Medical Articles & Research"
+    folder: "src/content/articles"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "pubDate", widget: "datetime" }
+      - { label: "Updated Date", name: "updatedDate", widget: "datetime", required: false }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Author", name: "author", widget: "string", default: "Dr. Drishti Sagar, MD" }
+      - { 
+          label: "Category", 
+          name: "category", 
+          widget: "select", 
+          options: ["Virology", "Bacteriology", "Immunology", "Antimicrobial Resistance", "Public Health"] 
+        }
+      - { label: "Tags", name: "tags", widget: "list", default: ["Research", "Clinical"] }
+      - { label: "Featured Image", name: "heroImage", widget: "image", required: false }
+      - { label: "Draft Status", name: "draft", widget: "boolean", default: false }
+      - { label: "Body", name: "body", widget: "markdown" }
